@@ -1,11 +1,11 @@
-🔢 Scientific Calculator
+## 🔢 Scientific Calculator
 
 A powerful and responsive scientific calculator built with HTML, CSS, and JavaScript.
 
-🔗 Live Demo:
-https://your-live-demo-link.vercel.app/
+## Live Demo:
+https://scientific-calculator-eight-peach.vercel.app/
 
-✨ Features:
+## ✨ Features:
 
 * Basic operations (+, −, ×, ÷)
 * Trigonometric functions (sin, cos, tan)
@@ -15,15 +15,15 @@ https://your-live-demo-link.vercel.app/
 * Error handling
 * Responsive and modern UI
 
-🚀 Technologies Used:
+## 🚀 Technologies Used:
 
 * HTML5
 * CSS3 (Grid & Flexbox)
 * JavaScript (ES6)
 
-📌 Purpose:
+## 📌 Purpose:
 This project was built to demonstrate front-end development skills, logical problem-solving, and the ability to create interactive web applications.
 
-🤝 Support:
+## 🤝 Support:
 If you like this project, feel free to ⭐ star the repository and share your feedback.
 For any issues or suggestions, please open an issue or contact me.
