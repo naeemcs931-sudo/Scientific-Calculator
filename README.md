@@ -2,7 +2,7 @@
 
 A powerful and responsive scientific calculator built with HTML, CSS, and JavaScript.
 
-## Live Demo:
+##  🔗Live Demo:
 https://scientific-calculator-eight-peach.vercel.app/
 
 ## ✨ Features:
