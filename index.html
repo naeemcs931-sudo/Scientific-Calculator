@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f1320" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="SciCalc Pro" />
+  <title>Scientific Calculator</title>
+  <link rel="manifest" href="manifest.json?v=20260408-mode-hotfix" />
+  <link rel="icon" href="icons/icon-192.svg?v=20260408-mode-hotfix" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon-192.svg?v=20260408-mode-hotfix" />
+  <link rel="stylesheet" href="style.css?v=20260408-mode-hotfix" />
+</head>
+<body>
+  <main class="app">
+    <section class="calculator-shell" aria-label="Simple Calculator" data-calculator-mode="simple">
+      <header class="app-header">
+        <div>
+          <h1 id="calculatorModeLabel">Simple Calculator</h1>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="icon-btn desktop-tool" id="graphToggle" aria-controls="graphPanel" aria-expanded="false" data-mode-visible="scientific">
+            Graph
+          </button>
+          <button type="button" class="icon-btn desktop-tool" id="formulaToggle" aria-controls="formulaPanel" aria-expanded="false" data-mode-visible="scientific">
+            Formulas
+          </button>
+          <button type="button" class="icon-btn desktop-tool" id="historyToggle" aria-controls="historyPanel" aria-expanded="false">
+            History
+          </button>
+          <button type="button" class="icon-btn desktop-tool" id="themeToggle" aria-controls="themePanel" aria-expanded="false" aria-label="Open theme selector">
+            Theme
+          </button>
+          <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-controls="mobileMenu" aria-expanded="false">
+            Menu
+          </button>
+        </div>
+      </header>
+
+      <section class="calculator-mode-bar" aria-label="Calculator type">
+        <div class="mode-switch" role="group" aria-label="Calculator mode">
+          <button type="button" class="mode-switch-btn active" id="simpleModeToggle" data-calculator-mode="simple" aria-pressed="true">
+            Simple
+          </button>
+          <button type="button" class="mode-switch-btn" id="scientificModeToggle" data-calculator-mode="scientific" aria-pressed="false">
+            Scientific
+          </button>
+        </div>
+      </section>
+
+      <aside class="mobile-menu" id="mobileMenu" aria-label="Calculator tools">
+        <div class="formula-header">
+          <div>
+            <p class="eyebrow">Quick access</p>
+            <h2>Calculator menu</h2>
+          </div>
+        </div>
+        <div class="mobile-menu-grid">
+          <button type="button" class="menu-action" id="installAppButton" hidden>Install App</button>
+          <button type="button" class="menu-action" data-menu-action="graph" data-mode-visible="scientific">Graph</button>
+          <button type="button" class="menu-action" data-menu-action="history">History</button>
+          <button type="button" class="menu-action" data-menu-action="formulas" data-mode-visible="scientific">Formulas</button>
+          <button type="button" class="menu-action" data-menu-action="theme">Theme</button>
+          <button type="button" class="menu-action" data-menu-action="copy">Copy</button>
+          <button type="button" class="menu-action" data-menu-action="angle" data-mode-visible="scientific">DEG / RAD</button>
+        </div>
+        <div class="install-help" id="installAppHelp" hidden>
+          <strong id="installAppHelpTitle">Install App</strong>
+          <p id="installAppHelpText">Add this calculator to your home screen for quicker access.</p>
+        </div>
+      </aside>
+
+      <section class="display-panel">
+        <div class="display-actions">
+          <div class="mode-group" data-mode-visible="scientific">
+            <span class="mode-pill" id="angleModeLabel">DEG</span>
+            <button type="button" class="mode-toggle" id="angleToggle" aria-label="Toggle degree or radian mode">
+              Switch to RAD
+            </button>
+          </div>
+          <button type="button" class="icon-btn subtle" id="copyResult" aria-label="Copy current result">
+            Copy
+          </button>
+        </div>
+
+        <div class="display-stack" aria-live="polite">
+          <div class="expression-line" id="expressionLine">0</div>
+          <div class="preview-line" id="previewLine">0</div>
+        </div>
+
+        <div class="status-row">
+          <span id="status" data-state="muted">Ready</span>
+          <span id="memoryBadge" data-mode-visible="scientific">Memory: 0</span>
+        </div>
+      </section>
+
+      <section class="button-grid simple-grid" data-calculator-mode="simple" role="grid" aria-label="Simple calculator keypad">
+        <button type="button" class="btn control" data-action="clear">AC</button>
+        <button type="button" class="btn control" data-action="backspace">DEL</button>
+        <button type="button" class="btn accent" data-value="%">%</button>
+        <button type="button" class="btn operator" data-value="/">/</button>
+
+        <button type="button" class="btn" data-value="7">7</button>
+        <button type="button" class="btn" data-value="8">8</button>
+        <button type="button" class="btn" data-value="9">9</button>
+        <button type="button" class="btn operator" data-value="*">*</button>
+
+        <button type="button" class="btn" data-value="4">4</button>
+        <button type="button" class="btn" data-value="5">5</button>
+        <button type="button" class="btn" data-value="6">6</button>
+        <button type="button" class="btn operator" data-value="-">-</button>
+
+        <button type="button" class="btn" data-value="1">1</button>
+        <button type="button" class="btn" data-value="2">2</button>
+        <button type="button" class="btn" data-value="3">3</button>
+        <button type="button" class="btn operator" data-value="+">+</button>
+
+        <button type="button" class="btn zero" data-value="0">0</button>
+        <button type="button" class="btn decimal" data-value=".">.</button>
+        <button type="button" class="btn equals" data-action="equals">=</button>
+      </section>
+
+      <section class="button-grid scientific-grid" data-calculator-mode="scientific" role="grid" aria-label="Scientific calculator keypad" hidden>
+        <button type="button" class="btn control" data-action="clear">AC</button>
+        <button type="button" class="btn control" data-action="backspace">DEL</button>
+        <button type="button" class="btn muted" data-value="(">(</button>
+        <button type="button" class="btn muted" data-value=")">)</button>
+        <button type="button" class="btn accent" data-value="%">%</button>
+
+        <button type="button" class="btn muted" data-value="sin(">sin</button>
+        <button type="button" class="btn muted" data-value="cos(">cos</button>
+        <button type="button" class="btn muted" data-value="tan(">tan</button>
+        <button type="button" class="btn accent" data-value="^">x^y</button>
+        <button type="button" class="btn accent" data-value="!">x!</button>
+
+        <button type="button" class="btn muted" data-value="log(">log</button>
+        <button type="button" class="btn muted" data-value="ln(">ln</button>
+        <button type="button" class="btn muted" data-value="sqrt(">sqrt</button>
+        <button type="button" class="btn muted" data-value="pi">pi</button>
+        <button type="button" class="btn muted" data-value="e">e</button>
+
+        <button type="button" class="btn" data-value="7">7</button>
+        <button type="button" class="btn" data-value="8">8</button>
+        <button type="button" class="btn" data-value="9">9</button>
+        <button type="button" class="btn operator" data-value="/">/</button>
+        <button type="button" class="btn accent" data-action="ans">Ans</button>
+
+        <button type="button" class="btn" data-value="4">4</button>
+        <button type="button" class="btn" data-value="5">5</button>
+        <button type="button" class="btn" data-value="6">6</button>
+        <button type="button" class="btn operator" data-value="*">*</button>
+        <button type="button" class="btn success" data-action="M+">M+</button>
+
+        <button type="button" class="btn" data-value="1">1</button>
+        <button type="button" class="btn" data-value="2">2</button>
+        <button type="button" class="btn" data-value="3">3</button>
+        <button type="button" class="btn operator" data-value="-">-</button>
+        <button type="button" class="btn success" data-action="M-">M-</button>
+
+        <button type="button" class="btn equals" data-action="equals">=</button>
+        <button type="button" class="btn zero" data-value="0">0</button>
+        <button type="button" class="btn decimal" data-value=".">.</button>
+        <button type="button" class="btn success" data-action="MR">MR</button>
+        <button type="button" class="btn operator" data-value="+">+</button>
+      </section>
+
+      <aside class="history-panel" id="historyPanel" aria-label="Calculation history">
+        <div class="history-header">
+          <div>
+            <p class="eyebrow">Stored locally</p>
+            <h2>Recent history</h2>
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="icon-btn subtle panel-close" data-close-panel="history">
+              Close
+            </button>
+            <button type="button" class="icon-btn subtle" id="clearHistory">
+              Clear
+            </button>
+          </div>
+        </div>
+        <div class="history-tools">
+          <button type="button" class="icon-btn subtle history-tool" id="exportHistoryTxt">
+            Export TXT
+          </button>
+          <button type="button" class="icon-btn subtle history-tool" id="exportHistoryJson">
+            Export JSON
+          </button>
+        </div>
+        <ul id="history"></ul>
+      </aside>
+
+      <aside class="formula-panel" id="formulaPanel" aria-label="Math formulas" data-mode-visible="scientific">
+        <div class="formula-header">
+          <div>
+            <p class="eyebrow">Quick reference</p>
+            <h2>Math formulas</h2>
+          </div>
+          <button type="button" class="icon-btn subtle panel-close" data-close-panel="formula">
+            Close
+          </button>
+        </div>
+        <div id="formulaList"></div>
+      </aside>
+
+      <aside class="theme-panel" id="themePanel" aria-label="Theme selection">
+        <div class="formula-header">
+          <div>
+            <p class="eyebrow">Personalize</p>
+            <h2>Choose a theme</h2>
+          </div>
+          <button type="button" class="icon-btn subtle panel-close" data-close-panel="theme">
+            Close
+          </button>
+        </div>
+
+        <div class="theme-grid" id="themeGrid">
+          <button type="button" class="theme-option" data-theme-value="dark">
+            <span class="theme-swatch theme-swatch-dark" aria-hidden="true"></span>
+            <strong>Dark</strong>
+            <span>Default focused workspace</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-value="ocean">
+            <span class="theme-swatch theme-swatch-ocean" aria-hidden="true"></span>
+            <strong>Ocean</strong>
+            <span>Cool blue studio vibe</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-value="neon">
+            <span class="theme-swatch theme-swatch-neon" aria-hidden="true"></span>
+            <strong>Neon</strong>
+            <span>High-energy glow style</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-value="minimal">
+            <span class="theme-swatch theme-swatch-minimal" aria-hidden="true"></span>
+            <strong>Minimal</strong>
+            <span>Soft neutral desk look</span>
+          </button>
+        </div>
+      </aside>
+
+      <aside class="graph-panel" id="graphPanel" aria-label="Function graph" data-mode-visible="scientific">
+        <div class="formula-header">
+          <div>
+            <p class="eyebrow">Visualize</p>
+            <h2>Function graph</h2>
+          </div>
+          <button type="button" class="icon-btn subtle panel-close" data-close-panel="graph">
+            Close
+          </button>
+        </div>
+
+        <label class="graph-label" for="graphExpression">Enter a function</label>
+        <div class="graph-input-row">
+          <input
+            class="graph-input"
+            id="graphExpression"
+            type="text"
+            inputmode="text"
+            spellcheck="false"
+            value="y = sin(x)"
+            placeholder="y = sin(x)"
+          />
+          <button type="button" class="icon-btn subtle graph-plot-btn" id="graphPlotButton">
+            Plot
+          </button>
+        </div>
+
+        <div class="graph-presets" id="graphPresets">
+          <button type="button" class="formula-use graph-preset" data-graph-preset="y = sin(x)">sin(x)</button>
+          <button type="button" class="formula-use graph-preset" data-graph-preset="y = cos(x)">cos(x)</button>
+          <button type="button" class="formula-use graph-preset" data-graph-preset="y = x^2">x^2</button>
+          <button type="button" class="formula-use graph-preset" data-graph-preset="y = x^3 - 4*x">x^3 - 4x</button>
+        </div>
+
+        <div class="graph-canvas-shell">
+          <canvas id="graphCanvas" width="360" height="240" aria-label="Graph of the entered function"></canvas>
+        </div>
+
+        <p class="graph-meta" id="graphMeta">Plot range: x from -10 to 10</p>
+      </aside>
+    </section>
+
+    <div class="overlay-backdrop" id="overlayBackdrop" hidden></div>
+  </main>
+
+  <script src="calculator-core.js?v=20260408-mode-hotfix"></script>
+  <script src="app.js?v=20260408-mode-hotfix"></script>
+</body>
+</html>
